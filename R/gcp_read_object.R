@@ -114,17 +114,17 @@ gcp_read_csv <- function(file_paths, bucket = c("wip_bucket", "data_bucket", "re
 #' @export
 
 gcp_read_rda <- function(file, bucket = gcptools::gcp_paths$data_bucket) {
-    x <- googleCloudStorageR::gcs_get_object(
-        object_name = file,
-        parseFunction = googleCloudStorageR::gcs_parse_download,
-        bucket = bucket
-    )
-    
-    e <- new.env()
-    load(rawConnection(x), envir = e)
+  x <- googleCloudStorageR::gcs_get_object(
+    object_name = file,
+    parseFunction = googleCloudStorageR::gcs_parse_download,
+    bucket = bucket
+  )
 
-    return(e[[file]])
-    message("gcp_read_rda is now depricated, please use gcp_read_rdata")
+  e <- new.env()
+  load(rawConnection(x), envir = e)
+
+  return(e[[file]])
+  message("gcp_read_rda is now depricated, please use gcp_read_rdata")
 }
 
 
