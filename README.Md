@@ -1,8 +1,8 @@
 # gcptools
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/ONSdigital/gcptools/actions/workflows/r.yml/badge.svg)](https://github.com/ONSdigital/gcptools/actions/workflows/r.yml)
-[![codecov](https://codecov.io/gh/ONSdigital/gcptools/branch/main/graph/badge.svg?token=0ExPkGuzYa)](https://codecov.io/gh/ONSdigital/gcptools)
+[![R-CMD-check](https://github.com/ONSdigital/gcptools_PUBLIC/actions/workflows/r.yml/badge.svg)](https://github.com/ONSdigital/gcptools_PUBLIC/actions/workflows/r.yml)
+[![codecov](https://codecov.io/gh/ONSdigital/gcptools_PUBLIC/branch/main/graph/badge.svg?token=bV6FD7PUSr)](https://codecov.io/gh/ONSdigital/gcptools_PUBLIC)
 <!-- badges: end -->
 
 ## Purpose
