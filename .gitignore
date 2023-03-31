@@ -1,0 +1,11 @@
+*/.ipynb_checkpoints
+.ipynb_checkpoints/*
+*-checkpoint.R
+*-checkpoint.R
+**/*.ipynb
+**/*.log
+.httr-oauth
+**/.ipynb_checkpoints
+.Rproj.user
+gcptools.Rproj
+.Rhistory

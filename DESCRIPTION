@@ -1,0 +1,50 @@
+Package: gcptools
+Type: Package
+Title: Centralised Write/Read Functions for GCP Projects of the CIS A&M Team
+Version: 1.0.4
+Date: 2021-08-17
+Authors@R: 
+    c(person(given = "James", family = "Cranston", email = "james.cranston@ons.gov.uk", role = c("aut", "cre")),
+      person(given = "Michalis", family = "Mylonas", email = "michalis.mylonas@ext.ons.gov.uk", role = c("aut")),
+      person(given = "Colin", family = "Daglish", email = "colin.daglish@ons.gov.uk", role = c("aut")),     
+      person(given = "Nathan", family = "Kelly", email = "nathan.kelly@ons.gov.uk", role = c("ctb")),
+      person(given = "Hon-Kit", family = "Choy", email = "hon-kit.choy@ext.ons.gov.uk", role = c("ctb")),
+      person(given = "Vasiliki", family = "Kladouchou", email = "Vasiliki.Kladouchou@ons.gov.uk", role = c("ctb")),
+      person(given = "Michalina", family = "Siemiatkowska", email = "Michalina.Siemiatkowska@ons.gov.uk", role = c("ctb")),
+      person(given = "Luis", family = "Dibdin", email = "Luis.Dibdin@ons.gov.uk", role = c("ctb")),
+      person(given = "Luke", family = "Hubbard", email = "Luke.Hubbard@ons.gov.uk", role = c("ctb")))
+Author: James Cranston
+Maintainer: James Cranston <james.cranston@ons.gov.uk>
+Description: This Repository is conceived to hold all necessary functions for other pipelines to write and read objects in GCP to a common standard.
+License: MIT + file LICENSE
+LazyData: TRUE
+RoxygenNote: 7.2.3
+Encoding: UTF-8
+Imports:
+    assertive.types,
+    assertthat,
+    covr,
+    dplyr,
+    futile.logger,
+    git2r,
+    glue,
+    googleAuthR,
+    googleCloudStorageR,
+    htmltools,
+    httr,
+    IRdisplay,
+    magrittr,
+    NCmisc,
+    purrr,
+    tidyr,
+    readr,
+    rlang,
+    xlsx,
+    xml2,
+    yaml
+Suggests:
+    testthat (>= 3.0.0),
+    usethis (>= 2.1.5)
+Depends:
+    R (>= 3.5.0)
+Config/testthat/edition: 3

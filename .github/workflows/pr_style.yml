@@ -1,0 +1,80 @@
+name: PR Style
+
+on:
+  issue_comment:
+    types: [created]
+    
+jobs:
+  validated:
+    name: Check in team
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get team membership
+        uses: tspascoal/get-user-teams-membership@v1
+        id: actorTeams
+        with:
+          username: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GCPTOOLS_PAT }} 
+          
+      - name:  Print team members
+        run: |
+          echo  ${{ steps.actorTeams.outputs.teams }}
+      
+      - if: ${{ !(contains(steps.actorTeams.outputs.teams, 'cis_methods_analysis_admins') || contains(steps.actorTeams.outputs.teams.teams, 'cis_methods_analysis_dev')) }}
+        name: Exit Message
+        run: |
+              echo "You are not a member of admin or dev team failing workflow"
+              exit 1
+  document:
+    if: ${{ github.event.issue.pull_request && (startsWith(github.event.comment.body, 'style') || startsWith(github.event.comment.body, 'Style')) }}
+    name: Style
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fetch head of current pull request
+        uses: r-lib/actions/pr-fetch@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Instance of R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install packages and dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2.2.8
+        with:
+          extra-packages: |
+            any::roxygen2
+            any::styler
+          needs: pr-document
+
+      - name: Style
+        run: styler::style_pkg()
+        shell: Rscript {0}
+
+      - name: Commit changes
+        run: |
+          {
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          if [ -z "$(git status --porcelain)" ]
+          then
+            echo "No changes to styling"
+          else
+            git add \*.R \*.r
+            git commit -m 'Style'
+          fi
+          } || {
+          echo "Something went wrong"
+          exit 1
+          }   
+          
+      - name: Push changes
+        uses: r-lib/actions/pr-push@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

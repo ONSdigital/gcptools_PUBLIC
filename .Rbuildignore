@@ -1,0 +1,6 @@
+^\.github/
+\\*.ipynb_checkpoints$
+\\*.ipynb$
+\\*.Md$
+^.*\.Rproj$
+^\.Rproj\.user$
